@@ -1,0 +1,16 @@
+snippet sfc "Custom Function component (gb)" b
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ${1:`!v expand('%:t:r')`} = () => {
+	return (
+        $0
+    );
+};
+
+$1.propTypes = {
+
+}
+
+export default $1;
+endsnippet
