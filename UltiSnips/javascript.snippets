@@ -14,3 +14,53 @@ $1.propTypes = {
 
 export default $1;
 endsnippet
+
+
+
+snippet sfcCtx  "Import Context API (gb)" b
+import React, { createContext, useState } from 'react';
+
+export const ${1:`!v expand('%:t:r')`} = createContext();
+
+const $2Provider = (props) => {
+
+
+	return (
+        <$1.Provider
+            value={{
+                $0
+            }}>
+            {props.children}
+        </$1.Provider>
+    );
+};
+
+
+export default $2Provider;
+endsnippet
+
+
+
+snippet emStyled "Import Emotion Styled" b
+import styled from '@emotion/styled';
+endsnippet
+
+snippet reducer "Reducer (gb)" b
+import {
+
+} from '$1';
+
+const initialState = {
+    $2
+}
+
+export default function(state = initialState, action){
+    switch(action.type){
+        default:
+            return state;
+    }
+}
+
+endsnippet
+
+

@@ -1,0 +1,308 @@
+global !p
+def format_snake(name):
+    return name.replace('.', '_')
+
+def get_path():
+    import os
+    path = os.getcwd()
+    foldername = os.path.basename(path)
+    module = ''
+    if foldername in ['views', 'view']:
+        directory = os.path.abspath(os.path.join(path ,".."))
+        module = os.path.basename(directory)
+    if foldername in ['xml']:
+        directory = os.path.abspath(path.join(__file__ ,"../../.."))
+        module = os.path.basename(directory)
+    return '/' + module + '/static/src/'
+
+endglobal
+
+snippet odoo
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        $0
+
+    </data>
+</odoo>
+endsnippet
+
+snippet odoo_update "No update"
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        $0
+
+    </data>
+</odoo>
+endsnippet
+
+snippet openerp
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        $0
+
+    </data>
+</openerp>
+endsnippet
+
+snippet openerp_update "No update"
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        $0
+
+    </data>
+</openerp>
+endsnippet
+
+
+snippet field "<field ... />"
+<field name="${1:Field}"/>
+endsnippet
+
+snippet field "<field string='..' />"
+<field name="${1:Field}" string="${2:string}"/>
+endsnippet
+
+snippet field "<field ... ></field>"
+<field name="${1:Field}">${2:Value}</field>
+endsnippet
+
+snippet pfield "<field position >..."
+<field name="${1:Field}" position="${2:after}">
+    $0
+</field>
+endsnippet
+
+snippet xpath "<xpath expr position >..."
+<xpath expr="${1://}" position="${2:after}>
+    $0
+</field>
+endsnippet
+
+snippet button
+<button
+    string="${1:Validate}"
+    states="${3:draft}"
+    type="${4:object}"
+    name="${5:to_validate}"/>
+endsnippet
+
+
+snippet domain
+domain="[('${1:state}','${2:=}', ${3:True})]"
+endsnippet
+
+snippet context
+context="{}"
+endsnippet
+
+snippet attrs "required"
+attrs="{'${1:required}': [('${2:state}','${3:=}', ${4:'value'})]}"
+endsnippet
+
+snippet attrs "readonly"
+attrs="{'${1:readonly}': [('${2:state}','${3:=}', ${4:'value'})]}"
+endsnippet
+
+snippet attrs "invisible"
+attrs="{'${1:invisible}': [('${2:state}','${3:=}', ${4:'value'})]}"
+endsnippet
+
+snippet group
+<group>
+    $0
+</group>
+endsnippet
+
+
+snippet notebook
+<notebook>
+    <page string="${1:Label}">
+        $0
+    </page>
+</notebook>
+endsnippet
+
+snippet page
+<page string="${1:Label}">
+    $0
+</page>
+endsnippet
+
+snippet label
+<label string="${1:Label}"/>
+endsnippet
+
+snippet attribute
+<attribute name="${1:name}">${2:value}</attribute>
+endsnippet
+
+snippet nolabel
+nolabel="1" ${1}
+endsnippet
+
+snippet readonly
+readonly="1" ${1}
+endsnippet
+
+snippet required
+required="1" ${1}
+endsnippet
+
+snippet invisible
+invisible="1" ${1}
+endsnippet
+
+snippet colors
+colors="${1:grey}:${2:state}${3:==}'${4:draft}'${5:;}"
+endsnippet
+
+snippet editable "top/buttom"
+editable="$1"
+endsnippet
+
+snippet tree
+<tree string="${1:Label}">
+    $0
+</tree>
+endsnippet
+
+snippet form
+<form string="${1:Label}">
+    $0
+</form>
+endsnippet
+
+snippet search
+<search string="${1:Label}">
+    $0
+</search>
+endsnippet
+
+snippet header
+<header>
+    $0
+</header>
+endsnippet
+
+snippet sheet
+<sheet>
+    $0
+</sheet>
+endsnippet
+
+snippet state_field
+<field name="state" widget="statusbar"
+    statusbar_visible="${1:draft}"/>
+endsnippet
+
+snippet target
+<field name="target">new</field>
+endsnippet
+
+snippet footer
+<footer>
+    <button string="$1"
+        name="$2"
+        type="${3:object}"
+        class="btn btn-primary"/>
+    Or
+    <button string="Cancel"
+        class="btn btn-secondary"
+        special="cancel"/>
+</footer>
+endsnippet
+
+
+snippet view "Base View"
+<record id="`!p snip.rv=format_snake(t[1])`_view_${2:form}" model="ir.ui.view">
+    <field name="name">$1.$2</field>
+    <field name="model">${1:model}</field>
+    <field name="type">$2</field>
+    <field name="arch" type="xml">
+        ${0}
+    </field>
+</record>
+endsnippet
+
+
+snippet iview "Inherit View"
+<record id="`!p snip.rv=format_snake(t[1])`_view_${2:form}" model="ir.ui.view">
+    <field name="name">$1.inherit.${3:refname}</field>
+    <field name="model">${1:model}</field>
+    <field name="inherit_id" ref="${4:View to inherit}"/>
+    <field name="arch" type="xml">
+        ${0}
+    </field>
+</record>
+endsnippet
+
+snippet title "oe_title"
+<div class="oe_title">
+    <label for="$1" class="oe_edit_only"/>
+    <h1>
+        <field name="${1:name}"
+            placeholder="${2:paceholder}" class="oe_inline"/>
+    </h1>
+</div>
+endsnippet
+
+snippet multi_title "oe_title multi fields"
+<div class="oe_title">
+    <h1>
+        <field name="${1:name}"
+            placeholder="${2:paceholder}" class="oe_inline"/> - <field name="${3:name}" placeholder="${4:placeholder}" class="oe_inline"/>
+    </h1>
+</div>
+endsnippet
+
+
+snippet act_window "Base act_window"
+<record id="`!p snip.rv=format_snake(t[1])`_action" model="ir.actions.act_window">
+    <field name="name">${2:name}</field>
+    <field name="res_model">${1:model}</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+endsnippet
+
+snippet inherit_id "Inherit ID"
+<field name="inherit_id" ref="${1:ref}"/>
+endsnippet
+
+snippet menuitem "Menuitem without parent"
+<menuitem id="${1:id}"
+    action="${2:action}"
+    parent="hr_category_menu_root"
+    sequence="${3:seq}"/>
+endsnippet
+
+snippet pmenuitem "Menuitem with parent"
+<menuitem id="${1:id}"
+    action="${2:action}"
+    parent="${3:parent}"
+    sequence="${4:seq}"/>
+endsnippet
+
+snippet assets "Backend 11"
+<template id="assets_frontend_`!p snip.rv=format_snake(t[1])`" inherit_id="website.assets_frontend" name="${1:name}">
+    <xpath expr="." position="inside">
+        ${0}
+    </xpath>
+</template>
+endsnippet
+
+snippet link "Stylesheet"
+<link rel="stylesheet" href="`!p snip.rv=get_path()`css/${1:file}.css" />
+endsnippet
+
+snippet script "JS Script"
+<script type="text/javascript" src="`!p snip.rv=get_path()`js/${1:file}.js"></script>
+endsnippet
