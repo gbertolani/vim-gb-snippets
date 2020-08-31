@@ -1,7 +1,7 @@
 snippet shortlicence
 # -*- coding: utf-8 -*-
 ###############################################################################
-#   Copyright (c) 2018 Eynes (Gaston Alberto Bertolani)
+#   Copyright (c) 2020 Eynes (Gaston Alberto Bertolani)
 #   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ###############################################################################
 endsnippet
@@ -10,7 +10,7 @@ snippet licence
 #-*- coding:utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2017-TODAY Eynes - Ingenieria del software.
+#    Copyright (c) 2020-TODAY Eynes - Ingenieria del software.
 #    (http://www.eynes.com.ar) All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -102,8 +102,9 @@ ${1} = fields.Binary(
 endsnippet
 
 snippet oSelection
-${1} = fields.Selection([
-    $0
+${1} = fields.Selection(
+    [
+        $0
     ],
     string="${2}",
 )
@@ -134,6 +135,12 @@ ${1} = fields.Many2many(
 )
 endsnippet
 
+snippet oActive
+active = fields.Boolean(
+    string="Active",
+    default=True,
+)
+endsnippet
 
 snippet optDefault
 default=${1}
