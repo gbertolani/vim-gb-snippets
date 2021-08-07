@@ -1,7 +1,7 @@
 snippet shortlicence
 # -*- coding: utf-8 -*-
 ###############################################################################
-#   Copyright (c) 2020 Eynes (Gaston Alberto Bertolani)
+#   Copyright (c) 2021 Eynes (Gaston Alberto Bertolani)
 #   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ###############################################################################
 endsnippet
@@ -10,7 +10,7 @@ snippet licence
 #-*- coding:utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2020-TODAY Eynes - Ingenieria del software.
+#    Copyright (c) 2021-TODAY Eynes - Ingenieria del software.
 #    (http://www.eynes.com.ar) All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -34,19 +34,24 @@ snippet odooimport
 import logging
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import exceptions
 
 _logger = logging.getLogger(__name__)
 
 endsnippet
 
+snippet verror
+raise exceptions.ValidationError(
+    $0
+)
+endsnippet
 
 snippet openerpimport
 
 import logging
 
 from openerp import _, api, fields, models
-from openerp.exceptions import ValidationError
+from openerp import exceptions
 
 _logger = logging.getLogger(__name__)
 
@@ -55,49 +60,49 @@ endsnippet
 
 snippet oBoolean
 ${1} = fields.Boolean(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oChar
 ${1} = fields.Char(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oFloat
 ${1} = fields.Float(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oInteger
 ${1} = fields.Integer(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oText
 ${1} = fields.Text(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oDate
 ${1} = fields.Date(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oDatetime
 ${1} = fields.Datetime(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oBinary
 ${1} = fields.Binary(
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
@@ -106,14 +111,14 @@ ${1} = fields.Selection(
     [
         $0
     ],
-    string="${2}",
+    string='${2}',
 )
 endsnippet
 
 snippet oMany2one
 ${1} = fields.Many2one(
     comodel_name='${2}',
-    string="${3}",
+    string='${3}',
 )
 endsnippet
 
@@ -121,7 +126,7 @@ snippet oOne2many
 ${1} = fields.One2many(
     comodel_name='${2}',
     inverse_name='${3}',
-    string="${4}",
+    string='${4}',
 )
 endsnippet
 
@@ -131,13 +136,13 @@ ${1} = fields.Many2many(
     relation='${3}',
     column1='${4}',
     column2='${5}',
-    string="${6}",
+    string='${6}',
 )
 endsnippet
 
 snippet oActive
 active = fields.Boolean(
-    string="Active",
+    string='Active',
     default=True,
 )
 endsnippet

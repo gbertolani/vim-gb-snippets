@@ -81,9 +81,9 @@ snippet pfield "<field position >..."
 endsnippet
 
 snippet xpath "<xpath expr position >..."
-<xpath expr="${1://}" position="${2:after}>
+<xpath expr="${1://}" position="${2:after}">
     $0
-</field>
+</xpath>
 endsnippet
 
 snippet button
@@ -158,6 +158,10 @@ endsnippet
 
 snippet invisible
 invisible="1" ${1}
+endsnippet
+
+snippet forcesave
+force_save="true" ${1}
 endsnippet
 
 snippet colors
